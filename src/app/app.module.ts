@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
 import { UsersComponent } from './components/users/users.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MockDataService } from './services/mock-data.service';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [MockDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

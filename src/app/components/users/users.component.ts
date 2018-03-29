@@ -1,5 +1,9 @@
+// Angular
 import { Component, OnInit, ViewChild } from '@angular/core';
+// Models
 import { User } from '../../models/user'
+// Services
+import { MockDataService } from '../../services/mock-data.service'
 
 @Component({
   selector: 'app-users',
@@ -24,36 +28,12 @@ export class UsersComponent implements OnInit {
   showUserForm: boolean = false;
   @ViewChild('userForm') form: any;
 
-  constructor() { }
+  constructor(private mockDataService: MockDataService) { }
 
   ngOnInit() {
 
-    this.users = [
-      {
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'j.doe@gmail.com',
-        isActive: true,
-        registered: new Date('01/02/2018 08:30:00'),
-        hide: true
-      },
-      {
-        firstName: 'Remi',
-        lastName: 'James',
-        email: 'r.james@gmail.com',
-        isActive: false,
-        registered: new Date('03/22/2017 06:30:00'),
-        hide: true
-      },
-      {
-        firstName: 'Stephen',
-        lastName: 'Lander',
-        email: 's.lander@gmail.com',
-        isActive: true,
-        registered: new Date('11/02/2016 10:30:00'),
-        hide: true
-      }
-    ];
+    this.users = this.mockDataService.getUsers();
+    
 
     this.loaded = true;
 
