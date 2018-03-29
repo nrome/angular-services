@@ -27,15 +27,20 @@ export class UsersComponent implements OnInit {
   enableAdd: boolean = false;
   showUserForm: boolean = false;
   @ViewChild('userForm') form: any;
+  data: any;
 
   constructor(private mockDataService: MockDataService) { }
 
   ngOnInit() {
+    // subscribe to the streaming observable 
+    this.mockDataService.getData().subscribe(data => {
+      console.log(data);
+    });
 
-    this.users = this.mockDataService.getUsers();
-    
-
-    this.loaded = true;
+    this.mockDataService.getUsers().subscribe(users => {
+      this.users = users;
+      this.loaded = true;
+    })
 
   }
 

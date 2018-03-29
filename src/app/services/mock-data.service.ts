@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 import { User } from '../models/user';
 
@@ -6,6 +8,7 @@ import { User } from '../models/user';
 export class MockDataService {
 
   users: User[];
+  data: Observable<any>;
 
   constructor() { 
 
@@ -37,9 +40,31 @@ export class MockDataService {
     ];
   }
 
-  getUsers(): User[] {
-    console.log('Fetching users from service...');
-    return this.users;
+  // set up observable open data stream 
+  getData() {
+    this.data = new Observable(observer => {
+      setTimeout(() => {
+        observer.next(3);
+      }, 1000);
+
+      setTimeout(() => {
+        observer.next(2);
+      }, 2000);
+
+      setTimeout(() => {
+        observer.next(1);
+      }, 3000);
+
+      setTimeout(() => {
+        observer.next('BLAST OFF!');
+      }, 4000);
+    });
+
+    return this.data;
+  }
+
+  getUsers(): Observable<User[]> {
+    return of(this.users);
   }
 
   addUser(user: User) {
