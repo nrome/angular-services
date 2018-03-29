@@ -42,4 +42,8 @@ export class MockDataService {
     return this.users;
   }
 
+  addUser(user: User) {
+    this.users.unshift(user);
+  }
+
 }

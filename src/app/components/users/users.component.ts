@@ -71,7 +71,9 @@ export class UsersComponent implements OnInit {
       value.hide = true;
 
       // append or push to the front of the users arr
-      this.users.unshift(value);
+        // this.users.unshift(value);
+      // run addUser from mock-data.service
+      this.mockDataService.addUser(value);
 
       // reset the form
       this.form.reset();
