@@ -3,7 +3,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 // Models
 import { User } from '../../models/user'
 // Services
-import { MockDataService } from '../../services/mock-data.service'
+// import { MockDataService } from '../../services/mock-data.service'
+import { UserService } from '../../services/user.service'
 
 @Component({
   selector: 'app-users',
@@ -29,15 +30,16 @@ export class UsersComponent implements OnInit {
   @ViewChild('userForm') form: any;
   data: any;
 
-  constructor(private mockDataService: MockDataService) { }
+  // constructor(private mockDataService: MockDataService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     // subscribe to the streaming observable 
-    this.mockDataService.getData().subscribe(data => {
+    this.userService.getData().subscribe(data => {
       console.log(data);
     });
 
-    this.mockDataService.getUsers().subscribe(users => {
+    this.userService.getUsers().subscribe(users => {
       this.users = users;
       this.loaded = true;
     })
@@ -78,7 +80,8 @@ export class UsersComponent implements OnInit {
       // append or push to the front of the users arr
         // this.users.unshift(value);
       // run addUser from mock-data.service
-      this.mockDataService.addUser(value);
+      // this.mockDataService.addUser(value);
+      this.userService.addUser(value);
 
       // reset the form
       this.form.reset();
