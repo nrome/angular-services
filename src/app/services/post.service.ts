@@ -4,6 +4,11 @@ import { Observable } from 'rxjs/Observable';
 
 import { Post } from '../models/Post';
 
+// header value for content type
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+}
+
 @Injectable()
 export class PostService {
 
@@ -16,5 +21,8 @@ export class PostService {
     return this.http.get<Post[]>(this.postsUrl);
   }
 
+  savePost(post: Post): Observable<Post> {
+    return this.http.post<Post>(this.postsUrl, post, httpOptions);
+  }
 
 }

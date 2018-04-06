@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import service
 import { PostService } from '../../services/post.service';
-// import interface
+// import model interface
 import { Post } from '../../models/Post';
 
 @Component({

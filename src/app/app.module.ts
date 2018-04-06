@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserService } from './services/user.service';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostService } from './services/post.service';
+import { PostFormComponent } from './components/post-form/post-form.component';
 
 @NgModule({
   // registered components
@@ -19,7 +20,8 @@ import { PostService } from './services/post.service';
     UserComponent,
     UsersComponent,
     NavbarComponent,
-    PostsComponent
+    PostsComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,
