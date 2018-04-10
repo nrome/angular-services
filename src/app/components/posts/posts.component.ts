@@ -14,7 +14,7 @@ export class PostsComponent implements OnInit {
   // invoke interface
   posts: Post[];
   currentPost: Post = {
-    id: 0;
+    id: 0,
     title: '',
     body: ''
   }
@@ -36,6 +36,42 @@ export class PostsComponent implements OnInit {
   editPost(post: Post) {
     this.currentPost = post;
     this.isEdit = true;
+  }
+
+  onUpdatedPost(post: Post) {
+    this.posts.forEach((cur, index) => {
+
+      if(post.id === cur.id) {
+        // take out the matched entity
+        this.posts.splice(index, 1);
+        // move the updated entity to top and pass in post
+        this.posts.unshift(post);
+        // remove edit mode
+        this.isEdit = false;
+        // reset form
+        this.currentPost = {
+          id: 0,
+          title: '',
+          body: ''
+        }
+      }
+
+    });
+  }
+
+  removePost(post: Post) {
+    if(confirm('Are You Sure')) {
+      this.postService.removePost(post.id).subscribe(() => {
+
+        this.posts.forEach((cur, index) => {
+          if(post.id === cur.id) {
+            // take out the matched entity
+            this.posts.splice(index, 1);
+          }
+        });
+
+      });
+    }
   }
 
 }
