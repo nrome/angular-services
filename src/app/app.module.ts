@@ -12,6 +12,9 @@ import { UserService } from './services/user.service';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostService } from './services/post.service';
 import { PostFormComponent } from './components/post-form/post-form.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { HomeComponent } from './components/home/home.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
 
 @NgModule({
   // registered components
@@ -21,12 +24,15 @@ import { PostFormComponent } from './components/post-form/post-form.component';
     UsersComponent,
     NavbarComponent,
     PostsComponent,
-    PostFormComponent
+    PostFormComponent,
+    HomeComponent,
+    PostDetailComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   // providers: [MockDataService],
   providers: [UserService, PostService],
